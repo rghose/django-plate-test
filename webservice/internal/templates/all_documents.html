@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="table">
+    <tr>
+        <td>Document ID</td>
+        <td>Status</td>
+        <td>Link to set mark digitized</td>
+    </tr>
+{% for result in data %}
+<tr>
+    <td>{{ result.document_sha1 }}</td>
+    <td>{{ result.status }}</td>
+    <td></td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
