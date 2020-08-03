@@ -7,7 +7,6 @@ class InvoiceDocument(models.Model):
     document_sha1 = models.CharField(max_length=40, primary_key=True)
     status = models.CharField(max_length=10, null=True)
     created_at = models.DateTimeField('date created')
-    
     def __str__(self):
         return "%s \"%s\"" % (self.document_sha1, self.created_at)
 
@@ -15,6 +14,5 @@ class DigitizedInvoice(models.Model):
     document_sha1 = models.ForeignKey(InvoiceDocument, on_delete=models.CASCADE)
     data_json = models.CharField(max_length=500)
     created_at = models.DateTimeField('date when status was changed')
-
     def __str__(self):
         return "%s \"%s\"" % (self.document_sha1, self.created_at)
