@@ -1,10 +1,8 @@
 from django.urls import path
 from django.conf.urls import url
 
-from . import views
+from .view.invoice_manager import InvoiceManager
 
 urlpatterns = [
-    path('', views.get_all_docs),
-    path('invoice', views.update_invoice)
+    url('invoice', InvoiceManager.as_view(), name='invoice_manager'),
 ]
-

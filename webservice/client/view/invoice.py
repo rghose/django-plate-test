@@ -2,6 +2,8 @@ from django.http import HttpResponse, JsonResponse
 from django.views.generic import View
 from django.shortcuts import render
 
+from django.utils import timezone
+
 from client.models import InvoiceDocument
 import hashlib
 import datetime
@@ -21,7 +23,7 @@ class Invoice(View):
         file_content = file_in_memory.read()
         hash_object = hashlib.sha1(file_content)
         sha1_string = hash_object.hexdigest()
-        current_timestamp = datetime.datetime.now().__str__()
+        current_timestamp = datetime.datetime.now(tz=timezone.utc).__str__()
         doc = InvoiceDocument(document_content=file_content, document_sha1=sha1_string, created_at=current_timestamp)
         doc.save()
         return sha1_string
